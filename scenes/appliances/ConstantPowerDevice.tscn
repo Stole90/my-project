@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dkb8xg0jfowie"]
+
+[ext_resource type="Texture2D" uid="uid://b117syvq1iikr" path="res://assets/ConstantPower.svg" id="1_d4h34"]
+[ext_resource type="Script" uid="uid://cxgx77swfcydl" path="res://scripts/appliances/ConstantPowerDevice.gd" id="1_fpcbl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fpcbl"]
+size = Vector2(48, 54)
+
+[node name="ConstantPowerDevice" type="Node2D" unique_id=1122915441]
+script = ExtResource("1_fpcbl")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2030469498]
+texture = ExtResource("1_d4h34")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=952506240]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1094554739]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_fpcbl")

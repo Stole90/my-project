@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://be28upwlkqw5n"]
+
+[ext_resource type="Script" uid="uid://b3dd43xutiap5" path="res://scripts/CableNode.gd" id="1_dkj8l"]
+
+[node name="CableNode" type="Node2D" unique_id=607027757]
+script = ExtResource("1_dkj8l")
+
+[node name="Label" type="Label" parent="." unique_id=1053699293]
+offset_right = 40.0
+offset_bottom = 23.0

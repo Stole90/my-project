@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://yq0hyhi5u71u"]
+
+[ext_resource type="Script" uid="uid://d3osf772hk63d" path="res://scripts/ui/dialogs/BoilerModeDialog.gd" id="1_negre"]
+
+[node name="BoilerModeDialog" type="PanelContainer" unique_id=712780888]
+script = ExtResource("1_negre")

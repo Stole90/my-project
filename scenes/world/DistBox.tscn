@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dkubylb7acdhw"]
+
+[ext_resource type="Script" uid="uid://d3qss87w1msjk" path="res://scripts/world/DistBoxNode.gd" id="1_eqt5x"]
+[ext_resource type="Texture2D" uid="uid://6ddmxyv12gg6" path="res://assets/DistBox.svg" id="1_knn3y"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_knn3y"]
+size = Vector2(100, 100)
+
+[node name="DistBox" type="Node2D" unique_id=1041478969]
+script = ExtResource("1_eqt5x")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=106207068]
+texture = ExtResource("1_knn3y")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1890688688]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=431662397]
+shape = SubResource("RectangleShape2D_knn3y")

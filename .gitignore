@@ -1,0 +1,13 @@
+.godot/
+android/
+export_presets.cfg
+*.import
+*.remap
+*.uid
+*.tres\~
+*.tscn\~
+
+# OS files
+.DS_Store
+Thumbs.db
+*.tmp

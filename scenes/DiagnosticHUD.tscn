@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bq0yv7pmjax6"]
+
+[ext_resource type="Script" uid="uid://4ry1g1a467i4" path="res://scripts/ui/DiagnosticHUD.gd" id="1_sx36w"]
+
+[node name="DiagnosticHUD" type="PanelContainer" unique_id=509883408]
+script = ExtResource("1_sx36w")

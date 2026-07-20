@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cqm78fm242352"]
+
+[ext_resource type="Script" uid="uid://da1xd21li4xqm" path="res://scripts/ThreePhaseCableNode.gd" id="1_5eiig"]
+
+[node name="ThreePhaseCableNode" type="Node2D" unique_id=607027757]
+script = ExtResource("1_5eiig")
+
+[node name="Label" type="Label" parent="." unique_id=1053699293]
+offset_right = 40.0
+offset_bottom = 23.0

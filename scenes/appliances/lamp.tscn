@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bro0w0ktwltom"]
+
+[ext_resource type="Script" uid="uid://dv0dokhv4whpo" path="res://scripts/appliances/Lamp.gd" id="1_17rxi"]
+[ext_resource type="Texture2D" uid="uid://dt3yn72vglse7" path="res://assets/Lamp.svg" id="1_n00qh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n00qh"]
+size = Vector2(64, 128)
+
+[node name="Lamp" type="Node2D" unique_id=1891782473]
+script = ExtResource("1_17rxi")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1487977001]
+texture = ExtResource("1_n00qh")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1260721255]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2004143076]
+shape = SubResource("RectangleShape2D_n00qh")

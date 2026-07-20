@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://36adlhacpdp7"]
+
+[ext_resource type="Script" uid="uid://b4mj41fmb6g08" path="res://scripts/world/ThreePhaseTransformerNode.gd" id="1_piy72"]
+[ext_resource type="Texture2D" uid="uid://d2qqlwv5irpgu" path="res://assets/Transformer.svg" id="2_txfmr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_txfmr"]
+size = Vector2(100, 100)
+
+[node name="ThreePhaseTransformerNode" type="Node2D" unique_id=2028674540]
+script = ExtResource("1_piy72")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1790177573]
+rotation = 1.5707964
+texture = ExtResource("2_txfmr")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=484114578]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1972684564]
+shape = SubResource("RectangleShape2D_txfmr")

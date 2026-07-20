@@ -1,0 +1,18 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scripts/world/TransformerNode.gd" id="1_txfmr"]
+[ext_resource type="Texture2D" path="res://assets/Transformer.svg" id="2_txfmr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_txfmr"]
+size = Vector2(100, 100)
+
+[node name="TransformerNode" type="Node2D"]
+script = ExtResource("1_txfmr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_txfmr")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_txfmr")

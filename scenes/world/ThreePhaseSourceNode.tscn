@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://c7tavvupqbca5"]
+
+[ext_resource type="Script" uid="uid://brfr8ygtf61cb" path="res://scripts/world/ThreePhaseSourceNode.gd" id="1_l2gvm"]
+[ext_resource type="Texture2D" uid="uid://bjfd6ig7kvap1" path="res://assets/AC_source.svg" id="2_w16th"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_phagh"]
+size = Vector2(128, 138)
+
+[node name="ThreePhaseSourceNode" type="Node2D" unique_id=2122897268]
+script = ExtResource("1_l2gvm")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=637371228]
+rotation = 1.5707964
+texture = ExtResource("2_w16th")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1795852746]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1706085002]
+shape = SubResource("RectangleShape2D_phagh")

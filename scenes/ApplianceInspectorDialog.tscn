@@ -1,0 +1,6 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" uid="uid://c2ml80kfnmvpr" path="res://scripts/ui/ApplianceInspectorDialog.gd" id="1_aid"]
+
+[node name="ApplianceInspectorDialog" type="PanelContainer" unique_id=200000001]
+script = ExtResource("1_aid")

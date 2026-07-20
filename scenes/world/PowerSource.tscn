@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dka8lortb2iqn"]
+
+[ext_resource type="Script" uid="uid://ewmk5wsds28o" path="res://scripts/world/PowerSourceNode.gd" id="1_g8whp"]
+[ext_resource type="Texture2D" uid="uid://bjfd6ig7kvap1" path="res://assets/AC_source.svg" id="1_phagh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_phagh"]
+size = Vector2(128, 138)
+
+[node name="PowerSource" type="Node2D" unique_id=2122897268]
+script = ExtResource("1_g8whp")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=637371228]
+texture = ExtResource("1_phagh")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1795852746]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1706085002]
+shape = SubResource("RectangleShape2D_phagh")

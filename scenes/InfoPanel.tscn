@@ -1,0 +1,42 @@
+[gd_scene format=3 uid="uid://bdoeegtqvlger"]
+
+[ext_resource type="Script" uid="uid://dlt6mwg1dqujr" path="res://scripts/ui/InfoPanel.gd" id="1_ce87d"]
+
+[node name="InfoPanel" type="PanelContainer" unique_id=336228497]
+script = ExtResource("1_ce87d")
+
+[node name="VBox" type="VBoxContainer" parent="." unique_id=2015419143]
+layout_mode = 2
+
+[node name="lblName" type="Label" parent="VBox" unique_id=1922286024]
+layout_mode = 2
+
+[node name="lblType" type="Label" parent="VBox" unique_id=517745671]
+layout_mode = 2
+
+[node name="RowsContainer" type="VBoxContainer" parent="VBox" unique_id=560793110]
+layout_mode = 2
+
+[node name="btnRepair" type="Button" parent="VBox" unique_id=476431399]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Fix"
+
+[node name="btnDelete" type="Button" parent="VBox" unique_id=807649694]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Delete"
+
+[node name="btnOpenPanel" type="Button" parent="VBox" unique_id=1728498623]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Otvori RO"
+
+[node name="btnToggle" type="Button" parent="VBox" unique_id=1492783928]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+
+[node name="btnEdit" type="Button" parent="VBox" unique_id=1592783928]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+text = "Edit"

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cable_inspector_dlg"]
+
+[ext_resource type="Script" path="res://scripts/CableInspectorDialog.gd" id="1_cid"]
+
+[node name="CableInspectorDialog" type="PanelContainer" unique_id=100000001]
+script = ExtResource("1_cid")

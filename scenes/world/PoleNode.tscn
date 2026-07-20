@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://gkwlo4vb3lsu"]
+
+[ext_resource type="Script" uid="uid://dwhst7vx2vrta" path="res://scripts/world/PoleNode.gd" id="1_rxkcj"]
+[ext_resource type="Texture2D" uid="uid://cxj45y0j70uxa" path="res://assets/Pole.svg" id="1_vi1vd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vi1vd"]
+size = Vector2(70, 128)
+
+[node name="PoleNode" type="Node2D" unique_id=1365559772]
+script = ExtResource("1_rxkcj")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1411795197]
+texture = ExtResource("1_vi1vd")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=388104594]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1154916133]
+shape = SubResource("RectangleShape2D_vi1vd")

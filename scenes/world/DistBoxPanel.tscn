@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://bg18sak2yfa2t"]
+
+[ext_resource type="Script" uid="uid://bsb5cbwqq7n0v" path="res://scripts/ui/DistBoxPanel.gd" id="1_7wwae"]
+
+[node name="DistBoxPanel" type="Control" unique_id=694274331]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -250.0
+offset_right = 500.0
+offset_bottom = 250.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+script = ExtResource("1_7wwae")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=1206400558]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="PanelContainer" unique_id=916107245]
+layout_mode = 2
+
+[node name="HBox" type="HBoxContainer" parent="PanelContainer/VBox" unique_id=587902220]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="LblTitle" type="Label" parent="PanelContainer/VBox/HBox" unique_id=1428802060]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="BtnClose" type="Button" parent="PanelContainer/VBox/HBox" unique_id=1372167162]
+layout_mode = 2
+text = "X"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PanelContainer/VBox" unique_id=1081870314]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ConsumerList" type="VBoxContainer" parent="PanelContainer/VBox/ScrollContainer" unique_id=447033865]
+layout_mode = 2
+size_flags_horizontal = 3

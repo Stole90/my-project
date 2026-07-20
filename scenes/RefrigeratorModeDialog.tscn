@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ddvh3m2co7otq"]
+
+[ext_resource type="Script" uid="uid://6bi8ri0jrm0e" path="res://scripts/ui/dialogs/RefrigeratorModeDialog.gd" id="1_ojbn8"]
+
+[node name="RefrigeratorModeDialog" type="PanelContainer" unique_id=1715770260]
+script = ExtResource("1_ojbn8")

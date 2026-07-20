@@ -1,0 +1,197 @@
+[gd_scene format=3 uid="uid://cs2you2l3pevw"]
+
+[ext_resource type="Script" uid="uid://b1ak3vxpe834h" path="res://scripts/world/world.gd" id="1_dphjl"]
+[ext_resource type="PackedScene" uid="uid://bdoeegtqvlger" path="res://scenes/InfoPanel.tscn" id="2_sl2e5"]
+[ext_resource type="PackedScene" uid="uid://xku6grydro3d" path="res://scenes/CableManager.tscn" id="2_v5dby"]
+[ext_resource type="PackedScene" uid="uid://deh8maqpshabj" path="res://scenes/SelectionManager.tscn" id="3_t5ptc"]
+[ext_resource type="PackedScene" uid="uid://dlag7wagpyfac" path="res://scenes/appliances/refrigerator.tscn" id="4_bq33v"]
+[ext_resource type="Script" uid="uid://ccn1v4qd3ha7o" path="res://scripts/ui/UILayer.gd" id="5_ckok1"]
+[ext_resource type="PackedScene" uid="uid://bg18sak2yfa2t" path="res://scenes/world/DistBoxPanel.tscn" id="6_5qq27"]
+[ext_resource type="PackedScene" uid="uid://gkwlo4vb3lsu" path="res://scenes/world/PoleNode.tscn" id="7_j2gmx"]
+[ext_resource type="PackedScene" uid="uid://13sy47ctys8q" path="res://scenes/appliances/boiler.tscn" id="8_1yooq"]
+[ext_resource type="PackedScene" uid="uid://bq0yv7pmjax6" path="res://scenes/DiagnosticHUD.tscn" id="9_71ii3"]
+[ext_resource type="PackedScene" uid="uid://bro0w0ktwltom" path="res://scenes/appliances/lamp.tscn" id="9_gb53w"]
+[ext_resource type="PackedScene" uid="uid://dkubylb7acdhw" path="res://scenes/world/DistBox.tscn" id="10_gb53w"]
+[ext_resource type="PackedScene" uid="uid://dkuxoqwa5vmnv" path="res://scenes/OvenModeDialog.tscn" id="10_t634p"]
+[ext_resource type="PackedScene" path="res://scenes/CableInspectorDialog.tscn" id="11_cid"]
+[ext_resource type="PackedScene" uid="uid://yq0hyhi5u71u" path="res://scenes/BoilerModeDialog.tscn" id="11_x0nq1"]
+[ext_resource type="PackedScene" path="res://scenes/ApplianceInspectorDialog.tscn" id="12_aid"]
+[ext_resource type="PackedScene" uid="uid://ddvh3m2co7otq" path="res://scenes/RefrigeratorModeDialog.tscn" id="12_rwifv"]
+[ext_resource type="PackedScene" uid="uid://bkyhcfq5uo52n" path="res://scenes/world/SocketNode.tscn" id="14_mxkvs"]
+[ext_resource type="PackedScene" uid="uid://wc6e5d1qnef4" path="res://scenes/world/SwitchNode.tscn" id="15_m114p"]
+[ext_resource type="PackedScene" path="res://scenes/world/FaultManagerNode.tscn" id="16_m114p"]
+[ext_resource type="PackedScene" uid="uid://c7tavvupqbca5" path="res://scenes/world/ThreePhaseSourceNode.tscn" id="19_wbwoo"]
+[ext_resource type="PackedScene" uid="uid://usnnnom7geyw" path="res://scenes/appliances/threePhaseOvenNode.tscn" id="20_tytul"]
+[ext_resource type="PackedScene" uid="uid://36adlhacpdp7" path="res://scenes/world/ThreePhaseTransformerNode.tscn" id="22_6hctx"]
+[ext_resource type="PackedScene" uid="uid://be28upwlkqw5n" path="res://scenes/CableNode.tscn" id="23_ues17"]
+[ext_resource type="PackedScene" uid="uid://d4mbh8p66vwjh" path="res://scenes/visualization/VisualizationHUD.tscn" id="26_ckok1"]
+[ext_resource type="PackedScene" uid="uid://dkb8xg0jfowie" path="res://scenes/appliances/ConstantPowerDevice.tscn" id="26_rwifv"]
+[ext_resource type="PackedScene" uid="uid://cqm78fm242352" path="res://scenes/ThreePhaseCableNode.tscn" id="27_ckok1"]
+
+[node name="World" type="Node2D" unique_id=1984204298]
+script = ExtResource("1_dphjl")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1840353304]
+
+[node name="CableManager" parent="." unique_id=2010664961 instance=ExtResource("2_v5dby")]
+
+[node name="SelectionManager" parent="." unique_id=1607609242 instance=ExtResource("3_t5ptc")]
+
+[node name="Refigerator" parent="." unique_id=542153827 instance=ExtResource("4_bq33v")]
+position = Vector2(11, -239)
+rated_power_w = 2000.0
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=310940101]
+script = ExtResource("5_ckok1")
+
+[node name="InfoPanel" parent="UI" unique_id=336228497 instance=ExtResource("2_sl2e5")]
+custom_minimum_size = Vector2(300, 0)
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 1345.0
+offset_top = 12.0
+offset_right = 1645.0
+offset_bottom = 123.0
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="btnAddCable" type="Button" parent="UI" unique_id=1363893022]
+offset_left = 958.0
+offset_top = 49.0
+offset_right = 1089.0
+offset_bottom = 147.0
+text = "Add cable"
+
+[node name="DistBoxPanel" parent="UI" unique_id=694274331 instance=ExtResource("6_5qq27")]
+size_flags_horizontal = 3
+metadata/_edit_lock_ = true
+
+[node name="CableInspectorDialog" parent="UI" unique_id=110000001 instance=ExtResource("11_cid")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -190.0
+offset_top = -160.0
+offset_right = 190.0
+offset_bottom = 160.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ApplianceInspectorDialog" parent="UI" unique_id=120000001 instance=ExtResource("12_aid")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -180.0
+offset_top = -150.0
+offset_right = 180.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="DiagnosticHUD" parent="UI" unique_id=1653996525 instance=ExtResource("9_71ii3")]
+
+[node name="OvenModeDialog" parent="UI" unique_id=1326035148 instance=ExtResource("10_t634p")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BoilerModeDialog" parent="UI" unique_id=712780888 instance=ExtResource("11_x0nq1")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RefrigeratorModeDialog" parent="UI" unique_id=1715770260 instance=ExtResource("12_rwifv")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PoleNode" parent="." unique_id=1365559772 instance=ExtResource("7_j2gmx")]
+position = Vector2(-446, -48)
+
+[node name="Boiler" parent="." unique_id=846480973 instance=ExtResource("8_1yooq")]
+position = Vector2(-158, -223)
+rated_power_w = 3000.0
+
+[node name="Lamp" parent="." unique_id=1891782473 instance=ExtResource("9_gb53w")]
+position = Vector2(177, -231)
+
+[node name="DistBox" parent="." unique_id=1041478969 instance=ExtResource("10_gb53w")]
+position = Vector2(-160, 144)
+
+[node name="SocketNode" parent="." unique_id=693694411 instance=ExtResource("14_mxkvs")]
+position = Vector2(-136, -60)
+
+[node name="SwitchNode" parent="." unique_id=198768278 instance=ExtResource("15_m114p")]
+position = Vector2(156, -73)
+
+[node name="FaultManagerNode" parent="." unique_id=2051900068 instance=ExtResource("16_m114p")]
+
+[node name="ThreePhaseSourceNode" parent="." unique_id=1309504689 instance=ExtResource("19_wbwoo")]
+position = Vector2(-465, -235)
+voltage_ll = 11000.0
+
+[node name="ThreePhaseOvenNode" parent="." unique_id=1651578043 instance=ExtResource("20_tytul")]
+position = Vector2(108, 160)
+initial_mode = "broil"
+
+[node name="ThreePhaseTransformerNode" parent="." unique_id=2028674540 instance=ExtResource("22_6hctx")]
+position = Vector2(-430, 164)
+
+[node name="CableNode" parent="." unique_id=607027757 instance=ExtResource("23_ues17")]
+
+[node name="ConstantPowerDevice" parent="." unique_id=1122915441 instance=ExtResource("26_rwifv")]
+position = Vector2(507, -70)
+
+[node name="SocketNode2" parent="." unique_id=1814439393 instance=ExtResource("14_mxkvs")]
+position = Vector2(3, -63)
+
+[node name="ThreePhaseCableNode" parent="." unique_id=1620718325 node_paths=PackedStringArray("node_a", "node_b") instance=ExtResource("27_ckok1")]
+node_a = NodePath("../ThreePhaseSourceNode")
+node_b = NodePath("../PoleNode")
+
+[node name="ThreePhaseCableNode2" parent="." unique_id=951341552 node_paths=PackedStringArray("node_a", "node_b") instance=ExtResource("27_ckok1")]
+node_a = NodePath("../PoleNode")
+node_b = NodePath("../ThreePhaseTransformerNode")
+
+[node name="ThreePhaseCableNode3" parent="." unique_id=1813581435 node_paths=PackedStringArray("node_a", "node_b") instance=ExtResource("27_ckok1")]
+node_a = NodePath("../ThreePhaseTransformerNode")
+node_b = NodePath("../DistBox")
+
+[node name="CableNode2" parent="." unique_id=795725565 node_paths=PackedStringArray("node_a", "node_b") instance=ExtResource("23_ues17")]
+cross_mm2 = 2.5
+node_a = NodePath("../DistBox")
+node_b = NodePath("../SocketNode")
+
+[node name="CableNode3" parent="." unique_id=958523783 node_paths=PackedStringArray("node_a", "node_b") instance=ExtResource("23_ues17")]
+cross_mm2 = 2.5
+node_a = NodePath("../DistBox")
+node_b = NodePath("../SocketNode2")
+
+[node name="CableNode4" parent="." unique_id=2067830881 node_paths=PackedStringArray("node_a", "node_b") instance=ExtResource("23_ues17")]
+cross_mm2 = 2.5
+node_a = NodePath("../SocketNode")
+node_b = NodePath("../Boiler")
+
+[node name="ThreePhaseCableNode4" parent="." unique_id=1691131110 node_paths=PackedStringArray("node_a", "node_b") instance=ExtResource("27_ckok1")]
+cross_mm2 = 2.5
+node_a = NodePath("../DistBox")
+node_b = NodePath("../ThreePhaseOvenNode")
+
+[node name="VisualizationHud" parent="." unique_id=1439361569 instance=ExtResource("26_ckok1")]
