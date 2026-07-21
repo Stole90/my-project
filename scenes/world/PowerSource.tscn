@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dka8lortb2iqn"]
 
-[ext_resource type="Script" uid="uid://ewmk5wsds28o" path="res://scripts/world/PowerSourceNode.gd" id="1_g8whp"]
+[ext_resource type="Script" uid="uid://dn71qy7u74mbh" path="res://scripts/world/SinglePhaseSourceNode.gd" id="1_g8whp"]
 [ext_resource type="Texture2D" uid="uid://bjfd6ig7kvap1" path="res://assets/AC_source.svg" id="1_phagh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_phagh"]

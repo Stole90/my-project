@@ -338,7 +338,7 @@ func update_state_3ph(_dt: float = 0.0) -> void:
 		i_max = max(i_max, I_ph.magnitude())
 
 	current = currents_by_phase.get(Phase.L1, Complex.zero())
-	is_overloaded = i_max > max_current_a
+	is_overloaded = i_max > effective_max_current(max_current_a)
 	_temp_at_last_solve = temperature_c
 
 ## Single-phase fallback.
@@ -349,7 +349,7 @@ func update_state(_node_voltages: Dictionary, _dt: float = 0.0) -> void:
 		current = Complex.zero()
 		return
 	current = va.sub(vb).div(phase_impedance())
-	is_overloaded = current.magnitude() > max_current_a
+	is_overloaded = current.magnitude() > effective_max_current(max_current_a)
 
 # ── Diagnostics ───────────────────────────────────────────────────────────────
 
@@ -391,16 +391,18 @@ func apparent_power(ph: int = Phase.L1) -> Complex:
 
 ## Load as fraction of rated current (worst phase).  0.0–1.0+.
 func loading() -> float:
-	if max_current_a == INF or max_current_a <= 0.0:
+	var eff_max := effective_max_current(max_current_a)
+	if eff_max == INF or eff_max <= 0.0:
 		return 0.0
 	var i_max: float = 0.0
 	for ph in [Phase.L1, Phase.L2, Phase.L3]:
 		i_max = max(i_max, current_magnitude(ph))
-	return i_max / max_current_a
+	return i_max / eff_max
 
 ## Load as percentage of rated current (worst phase).
 func loading_percent() -> float:
-	if max_current_a == INF:
+	var eff_max := effective_max_current(max_current_a)
+	if eff_max == INF:
 		return -1.0
 	return loading() * 100.0
 

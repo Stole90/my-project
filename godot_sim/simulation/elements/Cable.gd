@@ -109,7 +109,7 @@ func update_state_3ph(_dt: float = 0.0) -> void:
 		_temp_at_last_solve = temperature_c
 		return
 	current = va.sub(vb).div(impedance())
-	is_overloaded = current.magnitude() > max_current
+	is_overloaded = current.magnitude() > effective_max_current(max_current)
 	currents_by_phase[assigned_phase] = current
 	_temp_at_last_solve = temperature_c
 
@@ -138,7 +138,7 @@ func update_state(_node_voltages: Dictionary, _dt: float = 0.0) -> void:
 		_temp_at_last_solve = temperature_c
 		return
 	current       = va.sub(vb).div(impedance())
-	is_overloaded = current.magnitude() > max_current
+	is_overloaded = current.magnitude() > effective_max_current(max_current)
 	_temp_at_last_solve = temperature_c
 
 # ── Diagnostics ─────────────────────────────────────────────────────
@@ -148,9 +148,12 @@ func current_magnitude(_ph: int = Phase.L1) -> float:
 	return 0.0 if current == null else current.magnitude()
 
 func loading_percent() -> float:
-	if current == null or max_current == INF:
+	if current == null:
 		return -1.0
-	return current.magnitude() / max_current * 100.0
+	var eff_max: float = effective_max_current(max_current)
+	if eff_max == INF:
+		return -1.0
+	return current.magnitude() / eff_max * 100.0
 
 func voltage_drop() -> Complex:
 	var va: Complex = node_a().voltage

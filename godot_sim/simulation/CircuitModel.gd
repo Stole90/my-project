@@ -297,7 +297,7 @@ func validate() -> Array:
 		issues.append("Network has no elements.")
 
 	if sources.is_empty():
-		issues.append("No voltage source found. Add a VoltageSource or ThreePhaseVoltageSource.")
+		issues.append("No voltage source found. Add a SinglePhaseVoltageSource or ThreePhaseVoltageSource.")
 
 	for elem in elements:
 		if elem == null:
@@ -661,7 +661,7 @@ func get_totals() -> Dictionary:
 		if e is ThreePhaseVoltageSource:
 			src_p += e.active_power_total()
 			src_q += e.reactive_power_total()
-		elif e is VoltageSource:
+		elif e is SinglePhaseVoltageSource:
 			src_p += e.active_power()
 			src_q += e.reactive_power()
 

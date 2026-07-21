@@ -80,6 +80,17 @@ func get_info() -> Dictionary:
 		row("Stanje",      ", ".join(state_parts)),
 	])
 
+	if c.rating_result != null:
+		var max_i: float = max(vis_currents_a[0], vis_currents_a[1], vis_currents_a[2])
+		rows.append(row("Iz base",         c.rating_result.iz_base,        "%.1f A"))
+		rows.append(row("K1 (temperatura)", c.rating_result.k1_temperature, "%.3f"))
+		rows.append(row("K2 (grupisanje)",  c.rating_result.k2_grouping,    "%.3f"))
+		rows.append(row("K3 (tlo)",         c.rating_result.k3_soil,        "%.3f"))
+		rows.append(row("K4 (harmonici)",   c.rating_result.k4_harmonic,    "%.3f"))
+		rows.append(row("K5 (instalacija)", c.rating_result.k5_installation,"%.3f"))
+		rows.append(row("Iz final",         c.rating_result.iz_final,       "%.1f A"))
+		rows.append(row("Iskorišćenost",    c.utilization(max_i, c.max_current_a) * 100.0, "%.0f %%"))
+
 	return {
 		"name":    c.element_name,
 		"type":    "3-fazni kabl" + (" (N)" if c.has_neutral() else ""),

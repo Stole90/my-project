@@ -164,6 +164,22 @@ func apply_params(params: Dictionary) -> void:
 		sim_cable.material     = cable_core
 		sim_cable.max_current  = max_current
 		sim_cable.element_name = cable_label
+		var has_rating_params: bool = params.has("installation_method")
+		if has_rating_params:
+			if sim_cable.installation_model == null:
+				sim_cable.installation_model = CableInstallationModel.new()
+			var im: CableInstallationModel = sim_cable.installation_model
+			im.installation_method        = params.get("installation_method", im.installation_method)
+			im.ambient_c                   = params.get("ambient_c", im.ambient_c)
+			im.soil_temperature_c          = params.get("soil_temperature_c", im.soil_temperature_c)
+			im.soil_type                   = params.get("soil_type", im.soil_type)
+			im.soil_resistivity_advanced   = params.get("soil_resistivity_advanced", im.soil_resistivity_advanced)
+			im.grouped_circuits            = params.get("grouped_circuits", im.grouped_circuits)
+			im.grouping_arrangement        = params.get("grouping_arrangement", im.grouping_arrangement)
+			im.harmonic_level              = params.get("harmonic_level", im.harmonic_level)
+			im.thd_percent_advanced        = params.get("thd_percent_advanced", im.thd_percent_advanced)
+			sim_cable.insulation_type      = params.get("insulation_type", sim_cable.insulation_type)
+			sim_cable.recalc_rating()
 		if _model: _model.mark_dirty()
 	queue_redraw()
 

@@ -158,6 +158,25 @@ func apply_params(params: Dictionary) -> void:
 			sim_cable.neutral_impedance_per_m = Complex.new(rho / (neutral_cross_mm2 * 1e-6), 0.0)
 		else:
 			sim_cable.neutral_impedance_per_m = Complex.new(0.0, 0.0)
+
+		# ── Cable Rating System (SRPS IEC 60364-5-52) — opciono, aditivno ──────
+		var has_rating_params: bool = params.has("installation_method")
+		if has_rating_params:
+			if sim_cable.installation_model == null:
+				sim_cable.installation_model = CableInstallationModel.new()
+			var im: CableInstallationModel = sim_cable.installation_model
+			im.installation_method        = params.get("installation_method", im.installation_method)
+			im.ambient_c                   = params.get("ambient_c", im.ambient_c)
+			im.soil_temperature_c          = params.get("soil_temperature_c", im.soil_temperature_c)
+			im.soil_type                   = params.get("soil_type", im.soil_type)
+			im.soil_resistivity_advanced   = params.get("soil_resistivity_advanced", im.soil_resistivity_advanced)
+			im.grouped_circuits            = params.get("grouped_circuits", im.grouped_circuits)
+			im.grouping_arrangement        = params.get("grouping_arrangement", im.grouping_arrangement)
+			im.harmonic_level              = params.get("harmonic_level", im.harmonic_level)
+			im.thd_percent_advanced        = params.get("thd_percent_advanced", im.thd_percent_advanced)
+			sim_cable.insulation_type      = params.get("insulation_type", sim_cable.insulation_type)
+			sim_cable.recalc_rating()
+
 		if _model: _model.mark_dirty()
 	queue_redraw()
 

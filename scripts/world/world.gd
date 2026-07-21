@@ -128,7 +128,7 @@ func _input(event: InputEvent) -> void:
 
 func _register_grid_nodes() -> void:
 	for child: Node in get_children():
-		if child is PowerSourceNode:
+		if child is SinglePhaseSourceNode:
 			child.setup_in(model); _grid_nodes.append(child)
 		elif child is ThreePhaseSourceNode:
 			child.setup_in(model); _grid_nodes.append(child)
@@ -315,7 +315,7 @@ func _get_element_from_node(node: Node2D) -> CircuitElement:
 	if node is ThreePhaseFuseNode:  return node._fuse
 	if node is TransformerNode:     return node._transformer
 	if node is ThreePhaseSwitchNode: return node._switch
-	if node is PowerSourceNode:     return node._source
+	if node is SinglePhaseSourceNode:     return node._source
 	if node is BaseAppliance:       return (node as BaseAppliance)._consumer
 	return null
 

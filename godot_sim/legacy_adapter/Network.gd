@@ -45,8 +45,8 @@ func get_cable_current(c: Cable) -> float:  return _model.get_element_current(c)
 func get_overloaded_cables() -> Array:      return _model.get_overloaded_cables()
 func get_totals() -> Dictionary:            return _model.get_totals()
 
-func print_results() -> void:
-	NetworkPrinter.print_model(_model)
+#func print_results() -> void:
+	#NetworkPrinter.print_model(_model)
 
 # Direct access for code that wants to migrate
 func model() -> CircuitModel: return _model

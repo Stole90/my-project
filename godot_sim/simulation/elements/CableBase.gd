@@ -7,6 +7,7 @@
 ##   - game-state (damaged / is_overloaded / is_overheated)
 ##   - game akcije (connect/disconnect/damage/repair)
 ##   - temperaturski korigovan proračun otpora iz preseka + materijala
+##   - Cable Rating System (SRPS IEC 60364-5-52) — opciono, aditivno
 ##
 ## Podklase (Cable, ThreePhaseCable) implementiraju samo ono specifično za
 ## broj faza: impedansu/admitansu, Y-bus stamp, update_state, i osnovu za
@@ -181,3 +182,70 @@ func repair() -> void:
 	is_overheated = false
 	_temp_at_last_solve = temperature_c
 	mark_dirty()
+
+# ── Cable Rating System (SRPS IEC 60364-5-52) — opciono, aditivno ────────────
+##
+## Ova sekcija NE menja solver, termalni model niti gameplay logiku — samo
+## dodaje opcioni sloj koji određuje "koliki je zapravo dozvoljeni max_current"
+## na osnovu instalacionih uslova, umesto ručno unetog broja. Kad
+## installation_model nije postavljen (null), ponašanje je 100% identično
+## ranijem — legacy max_current/max_current_a se koristi direktno, tako da
+## postojeće scene i sačuvani podaci nastavljaju da rade bez izmena.
+
+## Instalacioni kontekst za rating proračun. null = rating sistem se ne
+## koristi; pada nazad na ručno zadat max_current/max_current_a.
+@export var installation_model: CableInstallationModel = null
+
+## Keširan rezultat poslednjeg rating proračuna. Pozvati recalc_rating() nakon
+## promene cross_mm2 / material / insulation_type / installation_model.
+## NIKAD ne pozivati iz _process()/_physics_process()/solve() — samo pri
+## promeni parametra (npr. iz apply_params()).
+var rating_result: CableRatingResult = null
+
+## Tip izolacije koji koristi rating sistem (a u budućnosti i termalni model).
+## "pvc" (default, odgovara postojećem insulation_max_c=90°C) | "xlpe" | "epr"
+var insulation_type: String = "pvc"
+
+## Ponovo izračunaj rating_result iz trenutnih električnih + instalacionih
+## parametara. Jeftino (par dictionary lookup-a + par sqrt-ova), ali i dalje
+## pozivati samo pri promeni parametra, ne svaki frame.
+func recalc_rating() -> void:
+	if installation_model == null:
+		rating_result = null
+		return
+	var em := CableElectricalModel.new()
+	em.material        = material
+	em.insulation_type = insulation_type
+	em.cross_mm2       = cross_mm2
+	em.length_m        = length_m
+	rating_result = CableRatingCalculator.calculate(em, installation_model)
+
+## Efektivna dozvoljena struja [A]: rating_result.iz_final kad je rating
+## sistem aktivan i validan, inače legacy ručno zadat max_current/max_current_a.
+func effective_max_current(legacy_max_current: float) -> float:
+	if rating_result != null and rating_result.is_valid and rating_result.iz_final > 0.0:
+		return rating_result.iz_final
+	return legacy_max_current
+
+## Iskorišćenost = stvarna struja / efektivna dozvoljena struja. Čisti podatak —
+## ova metoda nema NIKAKVE gameplay/termalne sporedne efekte; pozivalac
+## (thermal/game logika) odlučuje šta da radi sa ovom vrednošću.
+func utilization(current_magnitude_a: float, legacy_max_current: float) -> float:
+	var iz := effective_max_current(legacy_max_current)
+	if iz <= 0.0 or is_inf(iz):
+		return 0.0
+	return current_magnitude_a / iz
+
+## Data-driven klasifikacija iskorišćenosti — ovde NEMA hardkodovanih gameplay
+## POSLEDICA, samo klasifikacija. Pozivaoci (termalni/gameplay sloj) odlučuju
+## šta svaki nivo znači (npr. da li "severe_overload" ubrzava termalno
+## oštećenje — to ostaje u nadležnosti thermal modela / gameplay koda).
+const UTILIZATION_THRESHOLDS: Dictionary = {
+	"normal": 0.8, "warning": 1.0, "overload": 1.2,   # ≥1.2 → "severe_overload"
+}
+
+static func utilization_level(u: float) -> String:
+	if u < UTILIZATION_THRESHOLDS["normal"]:   return "normal"
+	if u < UTILIZATION_THRESHOLDS["warning"]:  return "warning"
+	if u < UTILIZATION_THRESHOLDS["overload"]: return "overload"
+	return "severe_overload"

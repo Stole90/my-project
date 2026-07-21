@@ -9,7 +9,7 @@
 
 extends RefCounted
 
-const Source             = preload("res://godot_sim/simulation/elements/VoltageSource.gd")
+const Source             = preload("res://godot_sim/simulation/elements/SinglePhaseVoltageSource.gd")
 const Load               = preload("res://godot_sim/simulation/elements/Consumer.gd")
 const RatedLoad          = preload("res://godot_sim/simulation/elements/RatedConsumer.gd")
 const InductiveLoad      = preload("res://godot_sim/simulation/elements/InductiveConsumer.gd")

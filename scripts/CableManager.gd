@@ -105,6 +105,12 @@ func _spawn_cable(a: Node2D, b: Node2D) -> CableNode:
 		cn.cable_label = "%s_to_%s" % [a.name, b.name]
 	add_child(cn)
 	cn.setup(a, b, _model_ref, _waypoints.duplicate())
+	# Cable Rating System (SRPS IEC 60364-5-52): route the full params dict
+	# (installation_method, ambient_c, soil_type, ...) through the same
+	# apply_params() wiring used by the inspector's EDIT mode — reuses the
+	# existing mechanism instead of duplicating field assignment here.
+	if not pending_params.is_empty():
+		cn.apply_params(pending_params)
 	return cn
 
 func _process(_delta: float) -> void:
@@ -149,4 +155,7 @@ func _spawn_three_phase_cable(a: Node2D, b: Node2D) -> ThreePhaseCableNode:
 		cn.cable_label = "%s_to_%s" % [a.name, b.name]
 	add_child(cn)
 	cn.setup(a, b, _model_ref, _waypoints.duplicate())
+	# Cable Rating System (SRPS IEC 60364-5-52): same routing as _spawn_cable().
+	if not pending_params.is_empty():
+		cn.apply_params(pending_params)
 	return cn
